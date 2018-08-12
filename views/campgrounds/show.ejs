@@ -1,0 +1,78 @@
+<% include ../partials/header %>
+
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col-md-3">
+            <p class="lead">Yelpcamp</p>
+            <div class="list-group">
+                <li class="list-group-item active">Item 1</li>
+                <li class="list-group-item">Item 2</li>
+                <li class="list-group-item">Item 3</li>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img src="<%=camp.image %>" class="img-responsive">
+                
+                <div class="caption-full">
+                    <h4 class="pull-right">$9.00 / night</h4>
+                    <h4><a>  <p><%=camp.name%></p></a></h4>
+                    <p><%=camp.description%></p>
+                </div>
+            </div>
+            
+            <div class="well">
+                <div class="text-right">
+                     <a href="/campgrounds/<%=camp._id%>/comments/new" class="btn btn-warning" style="padding: auto 30px ; display: inline-block"> Add a new comment</a>
+                </div>
+                
+                <hr>
+                
+                <% camp.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author %></strong>
+                            <span class="pull-right">10 days ago</span>
+                            <p><%=comment.text%></p>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <div style="margin: 0 auto; text-align: center">
+
+        
+        
+        <br>
+       
+    </div>
+        
+        <br><br>
+        
+        <div class="container ">
+            <% camp.comments.forEach(function(comment){ %>
+                <p> <%=comment.text %> - <%=comment.author %></p>
+            <% }); %>    
+        </div>
+        
+          
+    
+    
+</div>
+
+<% include ../partials/footer %>
