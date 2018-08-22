@@ -1,8 +1,41 @@
-<% include partials/header %>
+<!DOCTYPE html>
 
-<h1>Landing Page</h1>
+<html>
+    <head>
+        <title>YelpCamp</title>
+        <!--<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="/stylesheets/landing.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    </head>
+    <body>
 
-<p>Welcome to the landing page</p>
 
-<a href="/campgrounds"> View All Campgrounds </a>
+    <div class="container">
+        <% if(error && error.length >0){%>
+        <div class="alert alert-danger" role="alert">
+            <%=error%>
+        </div>
+        <% } %>
+        <% if(success && success.length >0){ %>
+        <div class="alert alert-success" role="alert">
+            <%=success%>
+        </div>
+        <% } %>
+    </div>
+
+
+    <div id="landing-header">
+        <h1> Welcome to YelpCamp</h1>
+        <a href="/campgrounds" class="btn btn-lg btn-success"> View All Campgrounds </a>        
+    </div>
+    
+    <ul class="slideshow">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
 <% include partials/footer%>

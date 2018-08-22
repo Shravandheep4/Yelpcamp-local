@@ -18,13 +18,22 @@
                 <img src="<%=camp.image %>" class="img-responsive">
                 
                 <div class="caption-full">
-                    <h4 class="pull-right">$9.00 / night</h4>
+                    <h4 class="pull-right">$<%=camp.price%> / night</h4>
                     <h4><a>  <p><%=camp.name%></p></a></h4>
                     <p><%=camp.description%></p>
+                    <p><em>Created by <%= camp.author.username%></em></p>
+                    
+                    <% if(currentUser && camp.author.id.equals(currentUser._id)){ %>
+                    <a href="/campgrounds/<%=camp._id%>/edit" class="btn btn-warning">Edit</a>
+                    <form action="/campgrounds/<%=camp._id%>?_method=DELETE" method="POST" class="pull-right">
+                        <button class="btn btn-danger">Delete</button>
+                    </form> 
+                    <% };%>
                 </div>
             </div>
             
             <div class="well">
+                <h4 class="text"> Comments</h4>
                 <div class="text-right">
                      <a href="/campgrounds/<%=camp._id%>/comments/new" class="btn btn-warning" style="padding: auto 30px ; display: inline-block"> Add a new comment</a>
                 </div>
@@ -34,45 +43,21 @@
                 <% camp.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
-                            <strong><%= comment.author %></strong>
+                            <strong><%= comment.author.username %></strong>
                             <span class="pull-right">10 days ago</span>
                             <p><%=comment.text%></p>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-warning" href="/campgrounds/<%=camp._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                            <form action="/campgrounds/<%=camp._id%>/comments/<%=comment._id%>/delete/?_method=DELETE" method="POST" style="display:inline;">
+                                <button class="btn btn-xs btn-danger">Delete</button> 
+                            </form>
+                            <% } %>
                         </div>
                     </div>
                 <% }); %>
             </div>
         </div>
-        
-        
-        
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    <div style="margin: 0 auto; text-align: center">
-
-        
-        
-        <br>
-       
-    </div>
-        
-        <br><br>
-        
-        <div class="container ">
-            <% camp.comments.forEach(function(comment){ %>
-                <p> <%=comment.text %> - <%=comment.author %></p>
-            <% }); %>    
-        </div>
-        
-          
-    
-    
 </div>
 
 <% include ../partials/footer %>
