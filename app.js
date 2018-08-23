@@ -26,8 +26,8 @@ var commentRoutes = require("./routes/comments"),
 var middleware = require("./middleware");  /* express automatically requires 'index.js' files by default */
     
 //Connecting to the Database
-// mongoose.connect("mongodb://localhost/yelp_camp");
-mongoose.connect("mongodb://shravandheep:database123@ds125392.mlab.com:25392/yelp_camp_shravan");
+mongoose.connect(process.env.DATABASEURL);
+// mongoose.connect("mongodb://shravandheep:database123@ds125392.mlab.com:25392/yelp_camp_shravan");
 
 
 //Setting defaults
